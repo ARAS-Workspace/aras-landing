@@ -1,0 +1,32 @@
+#  █████╗ ██████╗  █████╗ ███████╗
+# ██╔══██╗██╔══██╗██╔══██╗██╔════╝
+# ███████║██████╔╝███████║███████╗
+# ██╔══██║██╔══██╗██╔══██║╚════██║
+# ██║  ██║██║  ██║██║  ██║███████║
+# ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+
+# IDE - WebStorm & Development Tools
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+.claude/
+.playwright-mcp/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Backups
+backups/
+*.backup
+*.bak
+*.old
+
+# Logs
+logs/
+*.log
