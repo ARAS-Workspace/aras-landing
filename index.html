@@ -202,6 +202,54 @@
             transition: color var(--transition);
         }
 
+        .ip-info {
+            padding: 12px clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px);
+            font-family: var(--font-mono), monospace;
+            font-size: clamp(10px, 2.5vw, 13px);
+            line-height: 1.8;
+            text-align: left;
+            border-top: 1px solid var(--border);
+        }
+
+        .ip-info .line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ip-info .prompt {
+            color: #27ca40;
+            user-select: none;
+        }
+
+        .ip-info .label {
+            color: var(--text-muted);
+        }
+
+        .ip-info .value {
+            color: #27ca40;
+            font-weight: 500;
+        }
+
+        .ip-info .value.loading {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .ip-cursor {
+            display: inline-block;
+            width: 7px;
+            height: 14px;
+            background-color: #27ca40;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
         .slogan {
             margin-bottom: clamp(20px, 5vw, 32px);
         }
@@ -292,6 +340,27 @@
         [data-theme="light"] .moon {
             display: none;
         }
+
+        .legal-links {
+            margin-top: 16px;
+            font-family: var(--font-sans), sans-serif;
+            font-size: 12px;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--text);
+        }
+
+        .legal-sep {
+            color: var(--text-muted);
+            margin: 0 4px;
+        }
     </style>
 </head>
 
@@ -311,6 +380,22 @@
  ██║  ██║██║  ██║██║  ██║███████║
  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
         </pre></div>
+        <div class="ip-info">
+            <div class="line">
+                <span class="prompt">~$</span>
+                <span class="label">Your IP Address:</span>
+                <span class="value loading" id="ip-value">fetching...</span>
+            </div>
+            <div class="line">
+                <span class="prompt">~$</span>
+                <span class="label">Location:</span>
+                <span class="value" id="location-value">-</span>
+            </div>
+            <div class="line">
+                <span class="prompt">~$</span>
+                <span class="ip-cursor"></span>
+            </div>
+        </div>
     </div>
 
     <div class="slogan">
@@ -349,6 +434,12 @@
             <span class="icon sun">☀️</span>
         </button>
     </div>
+
+    <div class="legal-links">
+        <a href="https://github.com/ARAS-Workspace/aras-landing/blob/main/PRIVACY.md">Privacy Notice</a>
+        <span class="legal-sep">·</span>
+        <a href="https://github.com/ARAS-Workspace/aras-landing/blob/main/PRIVACY_TR.md">Gizlilik Bildirimi</a>
+    </div>
 </div>
 
 <script>
@@ -368,6 +459,22 @@
             document.documentElement.setAttribute("data-theme", "light");
         }
     })();
+
+    async function fetchIP() {
+        try {
+            const res = await fetch('/ip');
+            const data = await res.json();
+            const ipEl = document.getElementById('ip-value');
+            ipEl.textContent = data.ip;
+            ipEl.classList.remove('loading');
+            const locEl = document.getElementById('location-value');
+            locEl.textContent = data.location || '-';
+        } catch {
+            document.getElementById('ip-value').textContent = 'unavailable';
+        }
+    }
+
+    fetchIP();
 </script>
 </body>
 </html>
