@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>ARAS Workspace</title>
-    <meta name="title" content="ARAS Workspace" />
+    <title>ARAS Workspace — Projects</title>
+    <meta name="title" content="ARAS Workspace — Projects" />
     <meta
             name="description"
-            content="Turkish engineering, universal code. Open source software development workspace."
+            content="Open source projects by ARAS Workspace. Turkish engineering, universal code."
     />
     <meta name="author" content="Rıza Emre ARAS" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.aras.tc/" />
+    <link rel="canonical" href="https://www.aras.tc/projects" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.aras.tc/" />
-    <meta property="og:title" content="ARAS Workspace" />
+    <meta property="og:url" content="https://www.aras.tc/projects" />
+    <meta property="og:title" content="ARAS Workspace — Projects" />
     <meta
             property="og:description"
-            content="Turkish engineering, universal code. Open source software development workspace."
+            content="Open source projects by ARAS Workspace. Turkish engineering, universal code."
     />
     <meta property="og:image" content="https://www.aras.tc/assets/images/og-image.png" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.aras.tc/" />
-    <meta name="twitter:title" content="ARAS Workspace" />
+    <meta name="twitter:url" content="https://www.aras.tc/projects" />
+    <meta name="twitter:title" content="ARAS Workspace — Projects" />
     <meta
             name="twitter:description"
-            content="Turkish engineering, universal code. Open source software development workspace."
+            content="Open source projects by ARAS Workspace. Turkish engineering, universal code."
     />
     <meta name="twitter:image" content="https://www.aras.tc/assets/images/og-image.png" />
 
@@ -202,7 +202,7 @@
             transition: color var(--transition);
         }
 
-        .ip-info {
+        .terminal-cmd {
             padding: 12px clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px);
             font-family: var(--font-mono), monospace;
             font-size: clamp(10px, 2.5vw, 13px);
@@ -211,29 +211,25 @@
             border-top: 1px solid var(--border);
         }
 
-        .ip-info .line {
+        .terminal-cmd .line {
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .ip-info .prompt {
+        .terminal-cmd .prompt {
             color: #27ca40;
             user-select: none;
         }
 
-        .ip-info .label {
-            color: var(--text-muted);
-        }
-
-        .ip-info .value {
-            color: #27ca40;
+        .terminal-cmd .cmd {
+            color: var(--code-text);
             font-weight: 500;
         }
 
-        .ip-info .value.loading {
+        .terminal-cmd .output {
             color: var(--text-muted);
-            opacity: 0.6;
+            padding-left: 2px;
         }
 
         .ip-cursor {
@@ -250,25 +246,182 @@
             50% { opacity: 0; }
         }
 
-        .slogan {
+        /* --- Repo Slider --- */
+        .repo-slider {
             margin-bottom: clamp(20px, 5vw, 32px);
         }
 
-        .slogan-icons {
-            font-family: var(--font-emoji), sans-serif;
-            font-size: clamp(20px, 5vw, 28px);
-            margin-bottom: 8px;
-            letter-spacing: 4px;
+        .slider-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
         }
 
-        .slogan-text {
+        .slider-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 16px;
+            font-family: var(--font-mono), monospace;
+            transition: all var(--transition);
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .slider-btn:hover:not(:disabled) {
+            background: var(--border);
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slider-counter {
+            font-family: var(--font-mono), monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            min-width: 48px;
+            text-align: center;
+        }
+
+        .repo-card {
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .repo-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all var(--transition);
+        }
+
+        .repo-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-muted);
+            opacity: 0.8;
+        }
+
+        .repo-name {
+            font-family: var(--font-mono), monospace;
+            font-size: clamp(14px, 3.5vw, 16px);
+            font-weight: 600;
+            color: var(--text);
+            word-break: break-word;
+        }
+
+        .repo-desc {
             font-family: var(--font-sans), sans-serif;
-            font-size: clamp(13px, 3.5vw, 15px);
+            font-size: clamp(12px, 3vw, 14px);
             font-weight: 400;
             color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 380px;
             transition: color var(--transition);
         }
 
+        .repo-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: var(--font-mono), monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .repo-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--font-sans), sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all var(--transition);
+            margin-top: 4px;
+        }
+
+        .repo-link:hover {
+            background: var(--border);
+        }
+
+        .repo-link svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.8;
+        }
+
+        .repo-loading,
+        .repo-error {
+            font-family: var(--font-mono), monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 40px 0;
+        }
+
+        .repo-error {
+            color: #ff5f56;
+        }
+
+        /* slide transition */
+        .repo-card {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .repo-card.slide-out-left {
+            opacity: 0;
+            transform: translateX(-24px);
+        }
+
+        .repo-card.slide-out-right {
+            opacity: 0;
+            transform: translateX(24px);
+        }
+
+        .repo-card.slide-in-left {
+            opacity: 0;
+            transform: translateX(24px);
+        }
+
+        .repo-card.slide-in-right {
+            opacity: 0;
+            transform: translateX(-24px);
+        }
+
+        /* --- Links & Theme --- */
         .links {
             display: flex;
             gap: 12px;
@@ -380,17 +533,12 @@
  ██║  ██║██║  ██║██║  ██║███████║
  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
         </pre></div>
-        <div class="ip-info">
+        <div class="terminal-cmd">
             <div class="line">
                 <span class="prompt">~$</span>
-                <span class="label">Your IP Address:</span>
-                <span class="value loading" id="ip-value">fetching...</span>
+                <span class="cmd">ls projects/</span>
             </div>
-            <div class="line">
-                <span class="prompt">~$</span>
-                <span class="label">Location:</span>
-                <span class="value" id="location-value">-</span>
-            </div>
+            <div id="ls-output"></div>
             <div class="line">
                 <span class="prompt">~$</span>
                 <span class="ip-cursor"></span>
@@ -398,39 +546,24 @@
         </div>
     </div>
 
-    <div class="slogan">
-        <div class="slogan-icons">🇹🇷 🚀</div>
-        <p class="slogan-text">Turkish engineering, universal code.</p>
+    <div class="repo-slider">
+        <div class="repo-card" id="repo-card">
+            <div class="repo-loading">fetching repos...</div>
+        </div>
+        <div class="slider-nav">
+            <button class="slider-btn" id="prev-btn" disabled aria-label="Previous project">&lt;</button>
+            <span class="slider-counter" id="slider-counter">-/-</span>
+            <button class="slider-btn" id="next-btn" disabled aria-label="Next project">&gt;</button>
+        </div>
     </div>
 
     <div class="links">
-        <a href="https://github.com/ARAS-Workspace" class="link">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                />
-            </svg>
-            GitHub
-        </a>
-        <a href="/projects" class="link">
+        <a href="/" class="link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
             </svg>
-            Projects
-        </a>
-        <a href="mailto:r.emrearas@proton.me" class="link">
-            <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-            >
-                <path
-                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                />
-                <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Email
+            Back to Home
         </a>
     </div>
 
@@ -450,6 +583,6 @@
 
 <script src="assets/scripts/branding.js"></script>
 <script src="assets/scripts/theme.js"></script>
-<script src="assets/scripts/ip.js"></script>
+<script src="assets/scripts/projects.js"></script>
 </body>
 </html>
