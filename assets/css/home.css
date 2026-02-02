@@ -55,6 +55,25 @@
     transition: color var(--transition);
 }
 
+/* --- Banner --- */
+
+.banner {
+    display: block;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color var(--transition);
+}
+
+.banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 1;
+    object-fit: cover;
+}
+
 /* --- Source Badge --- */
 
 .source-badge {
